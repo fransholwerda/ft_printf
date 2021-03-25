@@ -6,12 +6,39 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/19 18:30:03 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/02/24 18:21:46 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/03/05 19:03:31 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include <string.h>
+
+static char	*get_var(const char *str, size_t i, va_list arg, size_t arg_cnt)
+{
+	if (str[i + 1] == 'c')
+		return (get_char(arg, arg_cnt));
+	else if (str[i + 1] == 'd')
+		return (get_double(arg, arg_cnt));
+	else if (str[i + 1] == 'e')
+		return (get_double(arg, arg_cnt));
+	else if (str[i + 1] == 'f')
+		return (get_double(arg, arg_cnt));
+	else if (str[i + 1] == 'i')
+		return (get_double(arg, arg_cnt));
+	else if (str[i + 1] == 'o')
+		return (get_double(arg, arg_cnt));
+	else if (str[i + 1] == 's')
+		return (get_double(arg, arg_cnt));
+	else if (str[i + 1] == 'u')
+		return (get_double(arg, arg_cnt));
+	else if (str[i + 1] == 'x')
+		return (get_double(arg, arg_cnt));
+	else if (str[i + 1] == 'd')
+		return (get_double(arg, arg_cnt));
+	else if (str[i + 1] == 'd')
+		return (get_double(arg, arg_cnt));
+	//DO SOMETHING HERE
+}
 
 int	ft_printf(const char *str, ...)
 {
