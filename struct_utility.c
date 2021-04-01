@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   header.h                                           :+:    :+:            */
+/*   struct_utility.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/02/19 18:32:32 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/01 17:20:21 by fholwerd      ########   odam.nl         */
+/*   Created: 2021/04/01 16:13:07 by fholwerd      #+#    #+#                 */
+/*   Updated: 2021/04/01 17:21:26 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_H
-# define HEADER_H
+#include "header.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include <stdarg.h>
-
-typedef struct s_tags
+t_tags	*ft_lstnew(void)
 {
-	int				flag_minus;
-	int				flag_plus;
-	int				flag_zero;
-	int				flag_blank;
-	int				flag_hash;
-	int				width;
-	int				precision;
-	int				size;
-	char			type;
-	struct s_tags	*next;
-}				t_tags;
+	t_tags	*tags;
 
-int	ft_printf(const char *s, ...);
-
-#endif
+	tags = (t_tags *)malloc(sizeof(t_tags));
+	if (tags == NULL)
+		return (NULL);
+	tags->flag_blank = 0;
+	tags->flag_hash = 0;
+	tags->flag_minus = 0;
+	tags->flag_plus = 0;
+	tags->flag_zero = 0;
+	tags->precision = 0;
+	tags->size = 0;
+	tags->type = '\0';
+	tags->width = 0;
+	tags->next = NULL;
+	return (tags);
+}

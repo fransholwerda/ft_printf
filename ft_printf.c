@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/19 18:30:03 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/03/05 19:03:31 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/04/01 17:49:58 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,29 @@ static char	*get_var(const char *str, size_t i, va_list arg, size_t arg_cnt)
 	//DO SOMETHING HERE
 }
 
+int	parse(const char *str, size_t pos, t_tags *tags)
+{
+	parse_flags();
+	parse_width();
+	parse_precision();
+	parse_size();
+	parse_conversion();
+}
+
 int	ft_printf(const char *str, ...)
 {
 	va_list	arg;
-	int	i;
+	size_t	i;
+	t_tags	*tags;
 
 	va_start(arg, str);
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '%' && str[i + 1] == 'c')
+		if (str[i] == '%')
 		{
-			write(1, &arg[0], 5);
-			i += 2;
+			i = parse(str, i, tags);
 		}
-		write(1, &str[i], 1);
 		i++;
 	}
 	va_end(arg);
