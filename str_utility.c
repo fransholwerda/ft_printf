@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/08 09:52:25 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/08 09:52:31 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/04/08 14:23:09 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,17 @@ char	*ft_strnstr(const char *str, const char *needle, size_t len)
 		i++;
 	}
 	return (NULL);
+}
+
+size_t	count_digits(char *str, long int i)
+{
+	size_t	count;
+
+	count = 0;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		count++;
+		i++;
+	}
+	return (count);
 }

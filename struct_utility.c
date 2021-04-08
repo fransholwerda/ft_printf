@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/01 16:13:07 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/01 17:21:26 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/04/08 10:51:49 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_tags	*ft_lstnew(void)
 	tags = (t_tags *)malloc(sizeof(t_tags));
 	if (tags == NULL)
 		return (NULL);
+	tags->skip_pos = 0;
 	tags->flag_blank = 0;
 	tags->flag_hash = 0;
 	tags->flag_minus = 0;
