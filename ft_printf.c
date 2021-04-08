@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/19 18:30:03 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/01 17:49:58 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/04/08 09:55:11 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,34 @@ static char	*get_var(const char *str, size_t i, va_list arg, size_t arg_cnt)
 	//DO SOMETHING HERE
 }
 
-int	parse(const char *str, size_t pos, t_tags *tags)
+int	parse(const char *str, long int i, t_tags *tags)
 {
-	parse_flags();
-	parse_width();
-	parse_precision();
-	parse_size();
-	parse_conversion();
+	if (str[i] == '#' || str[i] == '0' || str[i] == '-' || str[i] == ' ' || str[i] == '+' || str[i] == '*')
+		i = parse_flags();
+	if (str[i] >= '1' && str[i] <= '9')
+		i = parse_width();
+	if (str[i] == '.')
+		i = parse_precision();
+	if (str[i] == 'h' || str[i] == 'l')
+		i = parse_size();
+	if (ft_strnstr("cspdiuxXnfge%", str[i], 13))
+		i = parse_conversion();
 }
 
 int	ft_printf(const char *str, ...)
 {
-	va_list	arg;
-	size_t	i;
-	t_tags	*tags;
+	va_list		arg;
+	long int	i;
+	t_tags		*tags;
 
 	va_start(arg, str);
 	i = 0;
 	while (str[i])
 	{
 		if (str[i] == '%')
-		{
-			i = parse(str, i, tags);
-		}
+			i = parse(str, i + 1, tags);
+		if (i < 0)
+			return (i);
 		i++;
 	}
 	va_end(arg);

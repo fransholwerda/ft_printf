@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/19 18:32:32 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/01 17:20:21 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/04/08 09:52:56 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_tags
 	struct s_tags	*next;
 }				t_tags;
 
-int	ft_printf(const char *s, ...);
+int		ft_printf(const char *s, ...);
+char	*ft_strnstr(const char *str, const char *needle, size_t len);
 
 #endif
