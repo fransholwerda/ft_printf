@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/19 18:30:03 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/08 14:43:45 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/04/10 19:20:09 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,40 +38,106 @@ int	parse_width(const char *str, long int i, t_tags *tags)
 	if (i < 0)
 		return (i);
 	digits = 0;
-	if (str[i] == '*')
+	if (tags->width > 0 || tags->width_star > 0)
+		return (-1);
+	else if (str[i] == '*')
 	{
 		tags->width_star++;
 		i++;
 	}
-	else
+	else if (tags->width == 0)
 	{	
 		digits = count_digits(str[i], i);
-		tags->width = ft_atoi
+		tags->width = ft_atoi(&str[i]);
 	}
 	return (i + digits);
 }
 
 int	parse_precision(const char *str, long int i, t_tags *tags)
 {
+	size_t	digits;
+
 	if (i < 0)
 		return (i);
+	digits = 0;
+	if (tags->precision > 0 || tags->precision_star > 0)
+		return (-1);
+	else if (str[i] == '*')
+	{
+		tags->precision_star = 1;
+		i++;
+	}
+	else
+	{
+		digits = count_digits(str[i], i);
+		tags->precision = ft_atoi(&str[i]);
+	}
+	return (i + digits)
 }
 
 int	parse_size(const char *str, long int i, t_tags *tags)
 {
 	if (i < 0)
 		return (i);
+	if (str[i] == 'l' && str[i + 1] == 'l')
+	{
+		tags->size = 1;
+		return (i + 2);
+	}
+	else if (str[i] == 'l')
+		tags->size = 2;
+	else if (str[i] == 'h' && str[i + 1] == 'h')
+	{
+		tags->size = 3;
+		return (i + 2);
+	}
+	else if (str[i] == 'h')
+		tags->size = 4;
+	return (i + 1);
+}
+
+int	parse_conversion_extended(const char *str, long int i, t_tags *tags)
+{
+	if (str[i] == 'n')
+		tags->type = 'n';
+	else if (str[i] == 'f')
+		tags->type = 'f';
+	else if (str[i] == 'g')
+		tags->type = 'g';
+	else if (str[i] == 'e')
+		tags->type = 'e';
+	else if (str[i] == '%')
+		tags->type = '%';
+	return (i + 1);
 }
 
 int	parse_conversion(const char *str, long int i, t_tags *tags)
 {
 	if (i < 0)
 		return (i);
+	if (str[i] == 'c')
+		tags->type = 'c';
+	else if (str[i] == 's')
+		tags->type = 's';
+	else if (str[i] == 'p')
+		tags->type = 'p';
+	else if (str[i] == 'd')
+		tags->type = 'd';
+	else if (str[i] == 'i')
+		tags->type = 'i';
+	else if (str[i] == 'u')
+		tags->type = 'u';
+	else if (str[i] == 'x')
+		tags->type = 'x';
+	else if (str[i] == 'X')
+		tags->type = 'X';
+	else
+		return (parse_conversion_extended(str, i, tags));
+	return (i + 1);
 }
 
 int	parse(const char *str, long int i, t_tags *tags)
 {
-	//PUT A LOOP hERE!!!!11!!!!!one!!!!!!1!!!!eleven!!!!
 	if (ft_strnstr("#0- +", str[i], 6))
 		i = parse_flags(str, i, tags);
 	if (str[i] >= '1' && str[i] <= '9' ||  str[i] == '*')
@@ -97,7 +163,13 @@ int	ft_printf(const char *str, ...)
 	{
 		if (str[i] == '%')
 		{
-			tags = ft_lstnew();
+			if (!tags)
+				tags = ft_lstnew();
+			else
+			{
+				tags->next = ft_lstnew();
+				tags = tags->next;
+			}
 			i = parse(str, i + 1, tags);
 		}
 		if (i < 0)

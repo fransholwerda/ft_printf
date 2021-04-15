@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/01 16:13:07 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/08 10:51:49 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/04/11 17:33:36 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,18 @@ t_tags	*ft_lstnew(void)
 	tags->width = 0;
 	tags->next = NULL;
 	return (tags);
+}
+
+void	print_tags(t_tags tags)
+{
+	printf("skip_pos: %d\n
+			flag_blank: %d\n
+			flag_hash: %d\n
+			flag_minus: %d\n
+			flag_plus: %d\n
+			flag_zero: %d\n
+			precision: %d\n
+			size: %d\n
+			type: %c\n
+			width: %d\n");
 }
