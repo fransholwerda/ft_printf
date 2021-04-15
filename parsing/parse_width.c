@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf.c                                        :+:    :+:            */
+/*   parse_width.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/02/19 18:30:03 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/15 16:36:35 by fholwerd      ########   odam.nl         */
+/*   Created: 2021/04/15 16:36:03 by fholwerd      #+#    #+#                 */
+/*   Updated: 2021/04/15 17:39:47 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
-int	ft_printf(const char *str, ...)
+int	parse_width(const char *str, long int i, t_tags *tags)
 {
-	va_list		arg;
-	long int	i;
-	t_tags		*tags;
+	size_t	digits;
 
-	i = 0;
-	while (str[i])
+	if (i < 0)
+		return (i);
+	digits = 0;
+	if (tags->width > 0 || tags->width_star > 0)
+		return (-1);
+	else if (str[i] == '*')
 	{
-		if (str[i] == '%')
-		{
-			ft_lstadd_back(&tags, ft_lstnew());
-			i = parse(str, i + 1, ft_lstlast(tags));
-			printf("\n");
-		}
-		if (i < 0)
-			return (i);
+		tags->width_star++;
 		i++;
 	}
-	va_start(arg, str);
-	va_end(arg);
-	print_tags(tags);
-	ft_lstclear(&tags, free);
-	return (0);
+	else if (tags->width == 0)
+	{
+		digits = count_digits(str, i);
+		tags->width = ft_atoi(&str[i]);
+	}
+	return (i + digits);
 }

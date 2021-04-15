@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf.c                                        :+:    :+:            */
+/*   parse_size.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/02/19 18:30:03 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/15 16:36:35 by fholwerd      ########   odam.nl         */
+/*   Created: 2021/04/15 16:35:02 by fholwerd      #+#    #+#                 */
+/*   Updated: 2021/04/15 16:35:14 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
-int	ft_printf(const char *str, ...)
+int	parse_size(const char *str, long int i, t_tags *tags)
 {
-	va_list		arg;
-	long int	i;
-	t_tags		*tags;
-
-	i = 0;
-	while (str[i])
+	if (i < 0)
+		return (i);
+	if (str[i] == 'l' && str[i + 1] == 'l')
 	{
-		if (str[i] == '%')
-		{
-			ft_lstadd_back(&tags, ft_lstnew());
-			i = parse(str, i + 1, ft_lstlast(tags));
-			printf("\n");
-		}
-		if (i < 0)
-			return (i);
-		i++;
+		tags->size = 1;
+		return (i + 2);
 	}
-	va_start(arg, str);
-	va_end(arg);
-	print_tags(tags);
-	ft_lstclear(&tags, free);
-	return (0);
+	else if (str[i] == 'l')
+		tags->size = 2;
+	else if (str[i] == 'h' && str[i + 1] == 'h')
+	{
+		tags->size = 3;
+		return (i + 2);
+	}
+	else if (str[i] == 'h')
+		tags->size = 4;
+	return (i + 1);
 }

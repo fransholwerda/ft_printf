@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf.c                                        :+:    :+:            */
+/*   parse_flags.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/02/19 18:30:03 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/15 16:36:35 by fholwerd      ########   odam.nl         */
+/*   Created: 2021/04/15 16:36:21 by fholwerd      #+#    #+#                 */
+/*   Updated: 2021/04/15 16:36:31 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
-int	ft_printf(const char *str, ...)
+int	parse_flags(const char *str, long int i, t_tags *tags)
 {
-	va_list		arg;
-	long int	i;
-	t_tags		*tags;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '%')
-		{
-			ft_lstadd_back(&tags, ft_lstnew());
-			i = parse(str, i + 1, ft_lstlast(tags));
-			printf("\n");
-		}
-		if (i < 0)
-			return (i);
-		i++;
-	}
-	va_start(arg, str);
-	va_end(arg);
-	print_tags(tags);
-	ft_lstclear(&tags, free);
-	return (0);
+	if (i < 0)
+		return (i);
+	if (str[i] == '#')
+		tags->flag_hash++;
+	else if (str[i] == '0')
+		tags->flag_zero++;
+	else if (str[i] == '-')
+		tags->flag_minus++;
+	else if (str[i] == ' ')
+		tags->flag_blank++;
+	else if (str[i] == '+')
+		tags->flag_plus++;
+	tags->skip_pos += 1;
+	return (i + 1);
 }
