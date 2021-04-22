@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/01 16:13:07 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/15 13:19:24 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/04/18 19:27:39 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_tags	*ft_lstnew(void)
 
 t_tags	*ft_lstlast(t_tags *lst)
 {
-	while (lst->next)
+	while (lst->next != NULL)
 		lst = lst->next;
 	return (lst);
 }
