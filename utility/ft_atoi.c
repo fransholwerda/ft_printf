@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   utilities.c                                        :+:    :+:            */
+/*   ft_atoi.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/03/25 18:03:14 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/08 15:51:56 by fholwerd      ########   odam.nl         */
+/*   Created: 2021/04/22 13:51:47 by fholwerd      #+#    #+#                 */
+/*   Updated: 2021/04/22 13:52:10 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
 static int	overflow_check(long int value, int minus, const char c)
 {
@@ -50,14 +50,4 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	return ((int)(value * minus));
-}
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
 }

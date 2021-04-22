@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/19 18:32:32 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/15 16:49:45 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/04/22 12:53:14 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,13 @@ void	ft_lstadd_back(t_tags **lst, t_tags *new);
 void	ft_lstclear(t_tags **lst, void (*del)(void*));
 void	print_tags(t_tags *tags);
 
-int	parse(const char *str, long int i, t_tags *tags);
-int	parse_validate(t_tags *tags);
-int	parse_precision(const char *str, long int i, t_tags *tags);
-int	parse_size(const char *str, long int i, t_tags *tags);
-int	parse_conversion(const char *str, long int i, t_tags *tags);
-int	parse_flags(const char *str, long int i, t_tags *tags);
-int	parse_width(const char *str, long int i, t_tags *tags);
+int		parse(const char *str, long int i, t_tags *tags, va_list arg);
+int		parse_validate(t_tags *tags);
+int		parse_precision(const char *str, long int i, t_tags *tags);
+int		parse_size(const char *str, long int i, t_tags *tags);
+int		parse_conversion(const char *str, long int i, t_tags *tags, \
+		va_list arg);
+int		parse_flags(const char *str, long int i, t_tags *tags);
+int		parse_width(const char *str, long int i, t_tags *tags);
 
 #endif

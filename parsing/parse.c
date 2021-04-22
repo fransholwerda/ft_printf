@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/15 16:31:06 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/15 16:41:06 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/04/22 17:19:00 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	parse_validate(t_tags *tags)
 	return (1);
 }
 
-int	parse(const char *str, long int i, t_tags *tags)
+int	parse(const char *str, long int i, t_tags *tags, va_list arg)
 {
 	size_t	start_i;
 
@@ -32,7 +32,7 @@ int	parse(const char *str, long int i, t_tags *tags)
 	while (str[i] == 'h' || str[i] == 'l')
 		i = parse_size(str, i, tags);
 	if (ft_strchr("cspdiuxXnfge%", str[i]))
-		i = parse_conversion(str, i, tags);
+		i = parse_conversion(str, i, tags, arg);
 	tags->skip_pos = i - start_i;
 	if (parse_validate(tags) == 1)
 		return (i);

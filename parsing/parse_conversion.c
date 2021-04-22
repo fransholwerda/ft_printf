@@ -6,13 +6,13 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/15 16:34:22 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/15 16:49:15 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/04/22 12:43:59 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-static int	parse_conversion_extended(const char *str, long int i, t_tags *tags)
+static int	conv_ext(const char *str, long int i, t_tags *tags, va_list arg)
 {
 	if (str[i] == 'n')
 		tags->type = 'n';
@@ -27,7 +27,7 @@ static int	parse_conversion_extended(const char *str, long int i, t_tags *tags)
 	return (i + 1);
 }
 
-int	parse_conversion(const char *str, long int i, t_tags *tags)
+int	parse_conversion(const char *str, long int i, t_tags *tags, va_list arg)
 {
 	if (i < 0)
 		return (i);
@@ -48,6 +48,6 @@ int	parse_conversion(const char *str, long int i, t_tags *tags)
 	else if (str[i] == 'X')
 		tags->type = 'X';
 	else
-		return (parse_conversion_extended(str, i, tags));
+		return (conv_ext(str, i, tags, arg));
 	return (i + 1);
 }

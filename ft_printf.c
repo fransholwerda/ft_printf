@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/19 18:30:03 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/18 19:28:29 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/04/22 12:41:05 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,21 @@ int	ft_printf(const char *str, ...)
 	i = 0;
 	tags = NULL;
 	last_write = 0;
+	va_start(arg, str);
 	while (str[i])
 	{
 		if (str[i] == '%')
 		{
 			write(1, str + last_write, i - last_write);
 			ft_lstadd_back(&tags, ft_lstnew());
-			i = parse(str, i + 1, ft_lstlast(tags));
+			i = parse(str, i + 1, ft_lstlast(tags), arg);
 			last_write = i;
 		}
 		if (i < 0)
 			return (i);
 		i++;
 	}
-	write(1, str + last_write, i - last_write);
-	va_start(arg, str);
+	//write(1, str + last_write, i - last_write);
 	va_end(arg);
 	//print_tags(tags);
 	ft_lstclear(&tags, free);
