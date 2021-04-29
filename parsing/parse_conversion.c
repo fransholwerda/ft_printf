@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/15 16:34:22 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/22 12:43:59 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/04/29 13:59:43 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static int	conv_ext(const char *str, long int i, t_tags *tags, va_list arg)
 	else if (str[i] == 'e')
 		tags->type = 'e';
 	else if (str[i] == '%')
-		tags->type = '%';
+		convert_c(i, tags, arg);
+	//tags->type = '%';
 	return (i + 1);
 }
 
@@ -32,7 +33,7 @@ int	parse_conversion(const char *str, long int i, t_tags *tags, va_list arg)
 	if (i < 0)
 		return (i);
 	if (str[i] == 'c')
-		tags->type = 'c';
+		i = convert_c(i, tags, arg);
 	else if (str[i] == 's')
 		tags->type = 's';
 	else if (str[i] == 'p')
@@ -49,5 +50,5 @@ int	parse_conversion(const char *str, long int i, t_tags *tags, va_list arg)
 		tags->type = 'X';
 	else
 		return (conv_ext(str, i, tags, arg));
-	return (i + 1);
+	return (i);
 }

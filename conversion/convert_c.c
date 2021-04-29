@@ -6,15 +6,14 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/22 16:43:02 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/22 17:08:30 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/04/29 14:35:54 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-int	convert_c(const char *str, long int i, t_tags *tags, va_list arg)
+int	convert_c(long int i, t_tags *tags, va_list arg)
 {
-	char	*print;
 	int		width;
 
 	width = 0;
@@ -24,17 +23,18 @@ int	convert_c(const char *str, long int i, t_tags *tags, va_list arg)
 		width = va_arg(arg, int);
 	if (width > 0)
 	{
-		print = (char *)malloc((width * sizeof(char)) + 1);
-		if (!print)
-			return (-1);
 		if (tags->flag_minus == 1)
-			print[0] = str[i];
+		{
+			ft_putchar_fd(va_arg(arg, int), 1);
+			print_blank(width - 1);
+		}
 		else
-			print[width] = str[i];
-		write(1, print, width);
-		free(print);
+		{
+			print_blank(width - 1);
+			ft_putchar_fd(va_arg(arg, int), 1);
+		}
 	}
 	else
-		write(1, &str[i], 1);
+		ft_putchar_fd(va_arg(arg, int), 1);
 	return (i + 1);
 }

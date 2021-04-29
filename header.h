@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/19 18:32:32 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/22 12:53:14 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/04/29 14:22:38 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,16 @@ typedef struct s_tags
 	char			type;
 	struct s_tags	*next;
 	struct s_tags	*previous;
-}				t_tags;
+}					t_tags;
 
 int		ft_printf(const char *s, ...);
 
+void	ft_putchar_fd(char c, int fd);
 int		ft_atoi(const char *nptr);
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
 size_t	count_digits(const char *str, long int i);
+int		print_blank(int length);
 
 t_tags	*ft_lstnew(void);
 t_tags	*ft_lstlast(t_tags *lst);
@@ -58,5 +60,7 @@ int		parse_conversion(const char *str, long int i, t_tags *tags, \
 		va_list arg);
 int		parse_flags(const char *str, long int i, t_tags *tags);
 int		parse_width(const char *str, long int i, t_tags *tags);
+
+int		convert_c(long int i, t_tags *tags, va_list arg);
 
 #endif
