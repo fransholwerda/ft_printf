@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/19 18:32:32 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/29 14:22:38 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/04/30 14:13:42 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@
 
 typedef struct s_tags
 {
-	int				skip_pos;
+	int				printed;
+	int				pos;
+	int				tag_pos;
 	int				flag_minus;
 	int				flag_plus;
 	int				flag_zero;
@@ -33,8 +35,6 @@ typedef struct s_tags
 	int				precision_star;
 	int				size;
 	char			type;
-	struct s_tags	*next;
-	struct s_tags	*previous;
 }					t_tags;
 
 int		ft_printf(const char *s, ...);
@@ -45,6 +45,7 @@ size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
 size_t	count_digits(const char *str, long int i);
 int		print_blank(int length);
+int		ft_isdigit(int c);
 
 t_tags	*ft_lstnew(void);
 t_tags	*ft_lstlast(t_tags *lst);
@@ -52,14 +53,13 @@ void	ft_lstadd_back(t_tags **lst, t_tags *new);
 void	ft_lstclear(t_tags **lst, void (*del)(void*));
 void	print_tags(t_tags *tags);
 
-int		parse(const char *str, long int i, t_tags *tags, va_list arg);
+int		parse(const char *str, va_list arg, t_tags *tags);
 int		parse_validate(t_tags *tags);
-int		parse_precision(const char *str, long int i, t_tags *tags);
-int		parse_size(const char *str, long int i, t_tags *tags);
-int		parse_conversion(const char *str, long int i, t_tags *tags, \
-		va_list arg);
-int		parse_flags(const char *str, long int i, t_tags *tags);
-int		parse_width(const char *str, long int i, t_tags *tags);
+void	parse_precision(const char *str, t_tags *tags);
+void	parse_size(const char *str, t_tags *tags);
+void	parse_conversion(const char *str, va_list arg, t_tags *tags);
+void	parse_flags(const char *str, t_tags *tags);
+void	parse_width(const char *str, t_tags *tags);
 
 int		convert_c(long int i, t_tags *tags, va_list arg);
 

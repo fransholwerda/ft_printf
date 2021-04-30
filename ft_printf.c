@@ -6,32 +6,45 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/19 18:30:03 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/30 11:17:47 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/04/30 13:46:38 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	print_str(const char *str, va_list arg)
+int	print_str(const char *str, va_list arg, t_tags *tags)
 {
-	int	i;
+	int	last_write;
 
-	i = 0;
-	while (str[i])
+	last_write = 0;
+	while (str[tags->pos])
 	{
-		if (str[i] == '%')
-			parse(str, i, arg);
-		i++;
+		if (str[tags->pos] == '%')
+		{
+			tags->printed += write(1, str + last_write, tags->pos - last_write);
+			tags->pos++;
+			tags->tag_pos = tags->pos;
+			parse(str, arg, tags);
+		}
+		else
+			tags->pos++;
 	}
+	return (0);
 }
 
 int	ft_printf(const char *str, ...)
 {
 	va_list		arg;
-	int			printed;
+	t_tags		*tags;
+	int			error;
 
+	tags = ft_lstnew();
+	if (!tags)
+		return (-1);
 	va_start(arg, str);
-	printed = print_str(*str, arg);
+	error = print_str(*str, arg, tags);
+	if (error < 0)
+		return (error);
 	va_end(arg);
-	return (0);
+	return (tags->printed);
 }

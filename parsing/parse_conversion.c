@@ -6,49 +6,45 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/15 16:34:22 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/29 13:59:43 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/04/30 15:21:39 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-static int	conv_ext(const char *str, long int i, t_tags *tags, va_list arg)
+static void	conv_ext(const char *str, va_list arg, t_tags *tags)
 {
-	if (str[i] == 'n')
+	if (str[tags->pos] == 'n')
 		tags->type = 'n';
-	else if (str[i] == 'f')
+	else if (str[tags->pos] == 'f')
 		tags->type = 'f';
-	else if (str[i] == 'g')
+	else if (str[tags->pos] == 'g')
 		tags->type = 'g';
-	else if (str[i] == 'e')
+	else if (str[tags->pos] == 'e')
 		tags->type = 'e';
-	else if (str[i] == '%')
-		convert_c(i, tags, arg);
+	else if (str[tags->pos] == '%')
+		convert_c(tags, arg);
 	//tags->type = '%';
-	return (i + 1);
 }
 
-int	parse_conversion(const char *str, long int i, t_tags *tags, va_list arg)
+void	parse_conversion(const char *str, va_list arg, t_tags *tags)
 {
-	if (i < 0)
-		return (i);
-	if (str[i] == 'c')
-		i = convert_c(i, tags, arg);
-	else if (str[i] == 's')
+	if (str[tags->pos] == 'c')
+		convert_c(tags, arg);
+	else if (str[tags->pos] == 's')
 		tags->type = 's';
-	else if (str[i] == 'p')
+	else if (str[tags->pos] == 'p')
 		tags->type = 'p';
-	else if (str[i] == 'd')
+	else if (str[tags->pos] == 'd')
 		tags->type = 'd';
-	else if (str[i] == 'i')
+	else if (str[tags->pos] == 'i')
 		tags->type = 'i';
-	else if (str[i] == 'u')
+	else if (str[tags->pos] == 'u')
 		tags->type = 'u';
-	else if (str[i] == 'x')
+	else if (str[tags->pos] == 'x')
 		tags->type = 'x';
-	else if (str[i] == 'X')
+	else if (str[tags->pos] == 'X')
 		tags->type = 'X';
 	else
-		return (conv_ext(str, i, tags, arg));
-	return (i);
+		conv_ext(str, arg, tags);
 }
