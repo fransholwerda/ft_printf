@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf.c                                        :+:    :+:            */
+/*   parse_precision.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/02/19 18:30:03 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/30 11:17:47 by fholwerd      ########   odam.nl         */
+/*   Created: 2021/04/15 16:35:32 by fholwerd      #+#    #+#                 */
+/*   Updated: 2021/04/15 16:35:40 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
-int	print_str(const char *str, va_list arg)
+int	parse_precision(const char *str, long int i, t_tags *tags)
 {
-	int	i;
+	size_t	digits;
 
-	i = 0;
-	while (str[i])
+	if (i < 0)
+		return (i);
+	digits = 0;
+	i++;
+	if (tags->precision > 0 || tags->precision_star > 0)
+		return (-1);
+	else if (str[i] == '*')
 	{
-		if (str[i] == '%')
-			parse(str, i, arg);
+		tags->precision_star++;
 		i++;
 	}
-}
-
-int	ft_printf(const char *str, ...)
-{
-	va_list		arg;
-	int			printed;
-
-	va_start(arg, str);
-	printed = print_str(*str, arg);
-	va_end(arg);
-	return (0);
+	else
+	{
+		digits = count_digits(str, i);
+		tags->precision += ft_atoi(&str[i]);
+	}
+	return (i + digits);
 }

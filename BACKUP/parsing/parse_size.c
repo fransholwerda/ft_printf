@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf.c                                        :+:    :+:            */
+/*   parse_size.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/02/19 18:30:03 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/30 11:17:47 by fholwerd      ########   odam.nl         */
+/*   Created: 2021/04/15 16:35:02 by fholwerd      #+#    #+#                 */
+/*   Updated: 2021/04/15 16:35:14 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
-int	print_str(const char *str, va_list arg)
+int	parse_size(const char *str, long int i, t_tags *tags)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
+	if (i < 0)
+		return (i);
+	if (str[i] == 'l' && str[i + 1] == 'l')
 	{
-		if (str[i] == '%')
-			parse(str, i, arg);
-		i++;
+		tags->size = 1;
+		return (i + 2);
 	}
-}
-
-int	ft_printf(const char *str, ...)
-{
-	va_list		arg;
-	int			printed;
-
-	va_start(arg, str);
-	printed = print_str(*str, arg);
-	va_end(arg);
-	return (0);
+	else if (str[i] == 'l')
+		tags->size = 2;
+	else if (str[i] == 'h' && str[i + 1] == 'h')
+	{
+		tags->size = 3;
+		return (i + 2);
+	}
+	else if (str[i] == 'h')
+		tags->size = 4;
+	return (i + 1);
 }

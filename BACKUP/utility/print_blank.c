@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf.c                                        :+:    :+:            */
+/*   print_blank.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/02/19 18:30:03 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/30 11:17:47 by fholwerd      ########   odam.nl         */
+/*   Created: 2021/04/29 14:03:38 by fholwerd      #+#    #+#                 */
+/*   Updated: 2021/04/29 14:22:55 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
-int	print_str(const char *str, va_list arg)
+int	print_blank(int length)
 {
-	int	i;
+	char	*str;
+	int		i;
 
+	str = (char *)malloc(length * sizeof(char) + 1);
+	if (!str)
+		return (-1);
 	i = 0;
-	while (str[i])
+	while (i < length)
 	{
-		if (str[i] == '%')
-			parse(str, i, arg);
+		str[i] = ' ';
 		i++;
 	}
-}
-
-int	ft_printf(const char *str, ...)
-{
-	va_list		arg;
-	int			printed;
-
-	va_start(arg, str);
-	printed = print_str(*str, arg);
-	va_end(arg);
-	return (0);
+	str[length] = '\0';
+	write(1, str, length);
+	free(str);
+	return (1);
 }
