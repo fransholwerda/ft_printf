@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/15 16:36:21 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/30 14:13:45 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/04/30 18:29:50 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,5 @@ void	parse_flags(const char *str, t_tags *tags)
 		else if (str[tags->pos] == '+')
 			tags->flag_plus++;
 		tags->pos++;
-	}	
-	return (0);
+	}
 }

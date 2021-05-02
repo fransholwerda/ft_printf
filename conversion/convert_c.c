@@ -6,35 +6,31 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/22 16:43:02 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/29 14:35:54 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/05/02 13:23:08 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-int	convert_c(long int i, t_tags *tags, va_list arg)
+void	convert_c(t_tags *tags, va_list arg)
 {
-	int		width;
+	char c;
 
-	width = 0;
+	c = va_arg(arg, int);
 	if (tags->width > 0)
-		width = tags->width;
-	else if (tags->width_star == 1)
-		width = va_arg(arg, int);
-	if (width > 0)
 	{
 		if (tags->flag_minus == 1)
 		{
-			ft_putchar_fd(va_arg(arg, int), 1);
-			print_blank(width - 1);
+			tags->printed += ft_putchar_fd(c, 1);
+			tags->printed += print_blank(tags->width - 1, tags);
 		}
 		else
 		{
-			print_blank(width - 1);
-			ft_putchar_fd(va_arg(arg, int), 1);
+			tags->printed += print_blank(tags->width - 1, tags);
+			tags->printed += ft_putchar_fd(c, 1);
 		}
 	}
 	else
-		ft_putchar_fd(va_arg(arg, int), 1);
-	return (i + 1);
+		tags->printed += ft_putchar_fd(c, 1);
+	tags->pos++;
 }

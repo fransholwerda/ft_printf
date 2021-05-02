@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/19 18:30:03 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/30 13:46:38 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/04/30 18:53:10 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ int	print_str(const char *str, va_list arg, t_tags *tags)
 			tags->pos++;
 			tags->tag_pos = tags->pos;
 			parse(str, arg, tags);
+			last_write = tags->pos;
 		}
 		else
 			tags->pos++;
 	}
+	tags->printed += write(1, &str[last_write], ft_strlen(&str[last_write]));
 	return (0);
 }
 
@@ -42,7 +44,7 @@ int	ft_printf(const char *str, ...)
 	if (!tags)
 		return (-1);
 	va_start(arg, str);
-	error = print_str(*str, arg, tags);
+	error = print_str(str, arg, tags);
 	if (error < 0)
 		return (error);
 	va_end(arg);
