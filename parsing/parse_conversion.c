@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/15 16:34:22 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/30 15:21:39 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/05/06 16:14:21 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	parse_conversion(const char *str, va_list arg, t_tags *tags)
 	if (str[tags->pos] == 'c')
 		convert_c(tags, arg);
 	else if (str[tags->pos] == 's')
-		tags->type = 's';
+		convert_s(tags, arg);
 	else if (str[tags->pos] == 'p')
 		tags->type = 'p';
 	else if (str[tags->pos] == 'd')

@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/15 16:36:03 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/02 13:30:13 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/05/06 12:14:32 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	parse_width(const char *str, va_list arg, t_tags *tags)
 	{
 		if (str[tags->pos] == '*')
 		{
-			//tags->width_star++;
 			tags->width = va_arg(arg, int);
 			tags->pos++;
 		}

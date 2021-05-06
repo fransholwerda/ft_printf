@@ -1,37 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   print_blank.c                                      :+:    :+:            */
+/*   ft_putstr.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/04/29 14:03:38 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/06 17:22:37 by fholwerd      ########   odam.nl         */
+/*   Created: 2021/05/06 12:42:15 by fholwerd      #+#    #+#                 */
+/*   Updated: 2021/05/06 16:23:07 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-int	print_blank(int length, t_tags *tags)
+int	ft_putstr(char *str, int length)
 {
-	char	*str;
-	int		i;
-	int		printed;
-
-	str = (char *)malloc(length * sizeof(char) + 1);
-	if (!str)
-		return (0);
-	i = 0;
-	while (i < length)
-	{
-		if (tags->flag_zero == 1 && tags->flag_minus == 0)
-			str[i] = '0';
-		else
-			str[i] = ' ';
-		i++;
-	}
-	str[length] = '\0';
-	printed = write(1, str, length);
-	free(str);
-	return (printed);
+	if (length == 0)
+		length = ft_strlen(str);
+	return (write(1, str, length));
 }
