@@ -6,13 +6,13 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/15 16:34:22 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/30 15:21:39 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/05/11 11:17:40 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-static void	conv_ext(const char *str, va_list arg, t_tags *tags)
+static void	conv_ext(const char *str, va_list *arg, t_tags *tags)
 {
 	if (str[tags->pos] == 'n')
 		tags->type = 'n';
@@ -27,7 +27,7 @@ static void	conv_ext(const char *str, va_list arg, t_tags *tags)
 	//tags->type = '%';
 }
 
-void	parse_conversion(const char *str, va_list arg, t_tags *tags)
+void	parse_conversion(const char *str, va_list *arg, t_tags *tags)
 {
 	if (str[tags->pos] == 'c')
 		convert_c(tags, arg);

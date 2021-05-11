@@ -6,17 +6,17 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/22 16:43:02 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/02 13:23:08 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/05/11 11:18:31 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-void	convert_c(t_tags *tags, va_list arg)
+void	convert_c(t_tags *tags, va_list *arg)
 {
 	char c;
 
-	c = va_arg(arg, int);
+	c = va_arg(*arg, int);
 	if (tags->width > 0)
 	{
 		if (tags->flag_minus == 1)

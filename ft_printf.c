@@ -6,13 +6,13 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/19 18:30:03 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/30 18:53:10 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/05/11 11:16:44 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	print_str(const char *str, va_list arg, t_tags *tags)
+int	print_str(const char *str, va_list *arg, t_tags *tags)
 {
 	int	last_write;
 
@@ -44,7 +44,7 @@ int	ft_printf(const char *str, ...)
 	if (!tags)
 		return (-1);
 	va_start(arg, str);
-	error = print_str(str, arg, tags);
+	error = print_str(str, &arg, tags);
 	if (error < 0)
 		return (error);
 	va_end(arg);

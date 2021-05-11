@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/19 18:32:32 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/02 12:51:22 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/05/11 11:15:16 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ void	ft_lstadd_back(t_tags **lst, t_tags *new);
 void	ft_lstclear(t_tags **lst, void (*del)(void*));
 void	print_tags(t_tags *tags);
 
-int		parse(const char *str, va_list arg, t_tags *tags);
+int		parse(const char *str, va_list *arg, t_tags *tags);
 int		parse_validate(t_tags *tags);
 void	parse_precision(const char *str, t_tags *tags);
 void	parse_size(const char *str, t_tags *tags);
-void	parse_conversion(const char *str, va_list arg, t_tags *tags);
+void	parse_conversion(const char *str, va_list *arg, t_tags *tags);
 void	parse_flags(const char *str, t_tags *tags);
-void	parse_width(const char *str, va_list arg, t_tags *tags);
+void	parse_width(const char *str, va_list *arg, t_tags *tags);
 
-void	convert_c(t_tags *tags, va_list arg);
+void	convert_c(t_tags *tags, va_list *arg);
 
 #endif
