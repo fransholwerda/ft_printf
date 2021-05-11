@@ -6,11 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/15 16:31:06 by fholwerd      #+#    #+#                 */
-<<<<<<< HEAD
-/*   Updated: 2021/05/11 11:16:05 by fholwerd      ########   odam.nl         */
-=======
-/*   Updated: 2021/05/06 12:31:00 by fholwerd      ########   odam.nl         */
->>>>>>> 4292c3778eecdd403e83ad4b196d16b46525dc43
+/*   Updated: 2021/05/11 12:01:34 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
