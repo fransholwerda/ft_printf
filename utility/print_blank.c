@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/29 14:03:38 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/02 12:46:21 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/05/06 17:22:37 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	print_blank(int length, t_tags *tags)
 
 	str = (char *)malloc(length * sizeof(char) + 1);
 	if (!str)
-		return (-1);
+		return (0);
 	i = 0;
 	while (i < length)
 	{

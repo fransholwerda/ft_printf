@@ -6,12 +6,12 @@
 #    By: fholwerd <fholwerd@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/04/15 16:51:44 by fholwerd      #+#    #+#                  #
-#    Updated: 2021/04/29 13:18:12 by fholwerd      ########   odam.nl          #
+#    Updated: 2021/05/06 12:46:23 by fholwerd      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-SRCS = $(filter-out main.c, $(wildcard *.c)) $(wildcard parsing/*.c) $(wildcard utility/*.c) conversion/convert_c.c
+SRCS = $(filter-out main.c, $(wildcard *.c)) $(wildcard parsing/*.c) $(wildcard utility/*.c) conversion/convert_c.c conversion/convert_s.c
 SRCS_BONUS = $(wildcard bonus/*.c)
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)

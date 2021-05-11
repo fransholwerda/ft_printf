@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   convert_c.c                                        :+:    :+:            */
+/*   ft_putstr.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/04/22 16:43:02 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/11 11:57:24 by fholwerd      ########   odam.nl         */
+/*   Created: 2021/05/06 12:42:15 by fholwerd      #+#    #+#                 */
+/*   Updated: 2021/05/06 16:23:07 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-void	convert_c(t_tags *tags, va_list *arg)
+int	ft_putstr(char *str, int length)
 {
-	if (tags->width > 0)
-	{
-		if (tags->flag_minus == 1)
-		{
-			tags->printed += ft_putchar_fd(va_arg(arg, int), 1);
-			tags->printed += print_blank(tags->width - 1, tags);
-		}
-		else
-		{
-			tags->printed += print_blank(tags->width - 1, tags);
-			tags->printed += ft_putchar_fd(va_arg(arg, int), 1);
-		}
-	}
-	else
-		tags->printed += ft_putchar_fd(va_arg(arg, int), 1);
-	tags->pos++;
+	if (length == 0)
+		length = ft_strlen(str);
+	return (write(1, str, length));
 }
