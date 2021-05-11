@@ -6,33 +6,33 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/22 12:27:55 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/06 17:21:30 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/05/11 17:13:17 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-void	convert_s(t_tags *tags, va_list arg)
+void	convert_s(t_tags *tags, va_list *arg)
 {
 	char	*str;
+	int		width;
 
-	str = va_arg(arg, char *);
-	if ((tags->width - ft_strlen(str)) > 0)
+	str = va_arg(*arg, char *);
+	if (str == NULL)
+		str = "(null)";
+	if (tags->precision_true && tags->precision < ft_strlen(str))
+		width = tags->width - tags->precision;
+	else
+		width = tags->width - ft_strlen(str);
+	if (tags->flag_minus >= 1)
 	{
-		if (tags->flag_minus == 1)
-		{
-			tags->printed += ft_putstr(str, tags->precision);
-			tags->printed += print_blank(tags->width - ft_strlen(str), tags);
-		}
-		else
-		{
-			tags->printed += print_blank(tags->width - ft_strlen(str), tags);
-			//printf("\n\nprinted: %d\n\n", tags->printed);
-			tags->printed += ft_putstr(str, tags->precision);
-			//printf("\n\nprinted: %d\n\n", tags->printed);
-		}
+		tags->printed += ft_putstr(str, tags);
+		tags->printed += print_blank(width, tags);
 	}
 	else
-		tags->printed += ft_putstr(str, tags->precision);
+	{
+		tags->printed += print_blank(width, tags);
+		tags->printed += ft_putstr(str, tags);
+	}
 	tags->pos++;
 }

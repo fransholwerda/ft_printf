@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   convert_d.c                                        :+:    :+:            */
+/*   ft_putchar_fd.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/05/11 15:41:51 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/11 16:02:42 by fholwerd      ########   odam.nl         */
+/*   Created: 2021/04/29 13:28:07 by fholwerd      #+#    #+#                 */
+/*   Updated: 2021/05/11 17:56:53 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-void	convert_d(t_tags *tags, va_list *arg)
+int	ft_putchar(char c)
 {
-	int	d;
-	int	width;
-
-	d = va_arg(*arg, int);
-	
+	return (write(1, &c, 1));
 }

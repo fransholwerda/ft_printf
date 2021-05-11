@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/19 18:30:03 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/11 12:01:33 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/05/11 14:53:09 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	print_str(const char *str, va_list *arg, t_tags *tags)
 	last_write = 0;
 	while (str[tags->pos])
 	{
+		ft_lstreset(tags);
 		if (str[tags->pos] == '%')
 		{
 			tags->printed += write(1, str + last_write, tags->pos - last_write);

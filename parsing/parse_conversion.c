@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/15 16:34:22 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/11 11:57:32 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/05/11 17:06:10 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static void	conv_ext(const char *str, va_list *arg, t_tags *tags)
 	else if (str[tags->pos] == 'e')
 		tags->type = 'e';
 	else if (str[tags->pos] == '%')
-		convert_c(tags, arg);
+		convert_percent(tags);
+	(void)arg;
 	//tags->type = '%';
 }
 

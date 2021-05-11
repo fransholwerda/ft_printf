@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_putchar_fd.c                                    :+:    :+:            */
+/*   ft_putnbr.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/04/29 13:28:07 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/02 11:26:16 by fholwerd      ########   odam.nl         */
+/*   Created: 2021/05/11 15:54:35 by fholwerd      #+#    #+#                 */
+/*   Updated: 2021/05/11 17:54:36 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-int	ft_putchar_fd(char c, int fd)
+void	ft_putnbr(int n, t_tags *tags)
 {
-	return (write(fd, &c, 1));
+	if (n >= 10)
+		ft_putnbr(n, tags);
+	tags->printed += ft_putchar((n % 10) + '0');
 }
