@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/15 16:36:03 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/11 12:01:28 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/05/12 12:56:13 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	parse_width(const char *str, va_list *arg, t_tags *tags)
 		else
 		{
 			tags->width = ft_atoi(&str[tags->pos]);
-			tags->pos += count_digits(str, tags->pos);
+			tags->pos += count_skip(str, tags->pos);
 		}
 	}
 }

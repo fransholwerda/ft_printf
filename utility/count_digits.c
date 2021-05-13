@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   str_utility.c                                      :+:    :+:            */
+/*   count_digits.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/04/08 09:52:25 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/02 13:42:17 by fholwerd      ########   odam.nl         */
+/*   Created: 2021/05/12 12:57:18 by fholwerd      #+#    #+#                 */
+/*   Updated: 2021/05/12 13:13:47 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
-size_t	count_digits(const char *str, long int i)
+int	count_digits(int n)
 {
-	size_t	count;
+	int digits;
 
-	count = 0;
-	while (str[i] >= '0' && str[i] <= '9')
+	digits = 1;
+	if (n < 0)
+		n *= -1;
+	while (n >= 10)
 	{
-		count++;
-		i++;
+		digits++;
+		n = n / 10;
 	}
-	return (count);
+	return (digits);
 }

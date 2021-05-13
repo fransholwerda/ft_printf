@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/22 12:27:55 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/11 17:13:17 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/05/12 13:25:08 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	convert_s(t_tags *tags, va_list *arg)
 		width = tags->width - tags->precision;
 	else
 		width = tags->width - ft_strlen(str);
-	if (tags->flag_minus >= 1)
+	if (tags->flag_minus)
 	{
 		tags->printed += ft_putstr(str, tags);
 		tags->printed += print_blank(width, tags);
