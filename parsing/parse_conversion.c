@@ -6,27 +6,11 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/15 16:34:22 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/12 13:27:33 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/05/13 15:55:11 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
-
-static void	conv_ext(const char *str, va_list *arg, t_tags *tags)
-{
-	if (str[tags->pos] == 'n')
-		tags->type = 'n';
-	else if (str[tags->pos] == 'f')
-		tags->type = 'f';
-	else if (str[tags->pos] == 'g')
-		tags->type = 'g';
-	else if (str[tags->pos] == 'e')
-		tags->type = 'e';
-	else if (str[tags->pos] == '%')
-		convert_percent(tags);
-	(void)arg;
-	//tags->type = '%';
-}
 
 void	parse_conversion(const char *str, va_list *arg, t_tags *tags)
 {
@@ -35,17 +19,19 @@ void	parse_conversion(const char *str, va_list *arg, t_tags *tags)
 	else if (str[tags->pos] == 's')
 		convert_s(tags, arg);
 	else if (str[tags->pos] == 'p')
-		tags->type = 'p';
+		convert_p(tags, arg);
 	else if (str[tags->pos] == 'd')
 		convert_d(tags, arg);
 	else if (str[tags->pos] == 'i')
-		tags->type = 'i';
+		convert_d(tags, arg);
 	else if (str[tags->pos] == 'u')
-		tags->type = 'u';
+		convert_u(tags, arg);
 	else if (str[tags->pos] == 'x')
-		tags->type = 'x';
+		convert_x(tags, arg, 0);
 	else if (str[tags->pos] == 'X')
-		tags->type = 'X';
+		convert_x(tags, arg, 1);
+	else if (str[tags->pos] == '%')
+		convert_percent(tags);
 	else
-		conv_ext(str, arg, tags);
+		tags->pos++;	
 }

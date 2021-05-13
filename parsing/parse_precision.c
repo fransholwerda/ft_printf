@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/15 16:35:32 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/12 12:55:37 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/05/13 14:25:08 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	parse_precision(const char *str, va_list *arg, t_tags *tags)
 		if (str[tags->pos] == '*')
 		{
 			tags->precision = va_arg(*arg, int);
+			if (tags->precision < 0)
+				tags->precision_true = 0;
 			tags->pos++;
 		}
 		else

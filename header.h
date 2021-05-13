@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/19 18:32:32 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/12 13:37:25 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/05/13 15:52:46 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,17 @@ int		ft_atoi(const char *nptr);
 int		ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
 int		count_skip(const char *str, long int i);
-int		count_digits(int n);
+int		int_digits(int n);
+int		uint_digits(u_int32_t n);
+int		hex_digits(u_int32_t n);
+int		pointer_digits(u_int64_t n);
 int		print_pzero(int length);
 int		print_blank(int length, t_tags *tags);
 int		ft_isdigit(int c);
-void	ft_putnbr(int n, t_tags *tags);
+void	ft_putint(int n, t_tags *tags);
+void	ft_putuint(u_int32_t n, t_tags *tags);
+void	ft_puthex(u_int32_t n, t_tags *tags, int big);
+void	ft_putpointer(u_int64_t n, t_tags *tags);
 
 t_tags	*ft_lstnew(void);
 void	ft_lstreset(t_tags *tags);
@@ -62,8 +68,11 @@ void	parse_flags(const char *str, t_tags *tags);
 void	parse_width(const char *str, va_list *arg, t_tags *tags);
 
 void	convert_c(t_tags *tags, va_list *arg);
-void	convert_s(t_tags *tags, va_list *arg);
 void	convert_d(t_tags *tags, va_list *arg);
+void	convert_p(t_tags *tags, va_list *arg);
+void	convert_s(t_tags *tags, va_list *arg);
+void	convert_u(t_tags *tags, va_list *arg);
+void	convert_x(t_tags *tags, va_list *arg, int big);
 void	convert_percent(t_tags *tags);
 
 #endif
