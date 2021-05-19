@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/19 18:30:03 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/11 14:53:09 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/05/18 13:13:31 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,14 @@ int	print_str(const char *str, va_list *arg, t_tags *tags)
 int	ft_printf(const char *str, ...)
 {
 	va_list		arg;
-	t_tags		*tags;
+	t_tags		tags;
 	int			error;
 
-	tags = ft_lstnew();
-	if (!tags)
-		return (-1);
+	ft_lstnew(&tags);
 	va_start(arg, str);
-	error = print_str(str, &arg, tags);
+	error = print_str(str, &arg, &tags);
 	if (error < 0)
 		return (error);
 	va_end(arg);
-	return (tags->printed);
+	return (tags.printed);
 }

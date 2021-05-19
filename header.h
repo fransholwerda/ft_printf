@@ -6,7 +6,7 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/19 18:32:32 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/13 15:52:46 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/05/19 15:18:19 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,10 @@ void	ft_putuint(u_int32_t n, t_tags *tags);
 void	ft_puthex(u_int32_t n, t_tags *tags, int big);
 void	ft_putpointer(u_int64_t n, t_tags *tags);
 
-t_tags	*ft_lstnew(void);
+void	ft_lstnew(t_tags *tags);
 void	ft_lstreset(t_tags *tags);
 
-int		parse(const char *str, va_list *arg, t_tags *tags);
-int		parse_validate(t_tags *tags);
+void	parse(const char *str, va_list *arg, t_tags *tags);
 void	parse_precision(const char *str, va_list *arg, t_tags *tags);
 void	parse_size(const char *str, t_tags *tags);
 void	parse_conversion(const char *str, va_list *arg, t_tags *tags);

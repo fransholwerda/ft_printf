@@ -6,19 +6,14 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/01 16:13:07 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/11 12:57:44 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/05/18 13:13:17 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-t_tags	*ft_lstnew(void)
+void	ft_lstnew(t_tags *tags)
 {
-	t_tags	*tags;
-
-	tags = (t_tags *)malloc(sizeof(t_tags));
-	if (tags == NULL)
-		return (NULL);
 	tags->printed = 0;
 	tags->pos = 0;
 	tags->flag_blank = 0;
@@ -31,7 +26,6 @@ t_tags	*ft_lstnew(void)
 	tags->size = 0;
 	tags->type = '\0';
 	tags->width = 0;
-	return (tags);
 }
 
 void	ft_lstreset(t_tags *tags)
