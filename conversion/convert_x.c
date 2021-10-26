@@ -6,11 +6,11 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/13 13:29:25 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/13 13:31:51 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/10/26 17:16:38 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header.h"
+#include "../ft_printf.h"
 
 static int	get_width(t_tags *tags, u_int32_t u, int digits)
 {
@@ -39,14 +39,14 @@ void	convert_x(t_tags *tags, va_list *arg, int big)
 	if (tags->flag_minus)
 	{
 		tags->printed += print_pzero(tags->precision - digits);
-		ft_puthex(u, tags, big);
+		ft_puthex(u, tags, big, 1);
 		tags->printed += print_blank(width, tags);
 	}
 	else
 	{
 		tags->printed += print_blank(width, tags);
 		tags->printed += print_pzero(tags->precision - digits);
-		ft_puthex(u, tags, big);
+		ft_puthex(u, tags, big, 1);
 	}
 	tags->pos++;
 }

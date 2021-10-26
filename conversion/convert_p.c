@@ -6,11 +6,11 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/13 15:42:06 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/13 15:57:24 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/10/26 17:16:38 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header.h"
+#include "../ft_printf.h"
 
 static int	get_width(t_tags *tags, u_int64_t u, int digits)
 {

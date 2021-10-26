@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   header.h                                           :+:    :+:            */
+/*   ft_printf.h                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/02/19 18:32:32 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/19 15:18:19 by fholwerd      ########   odam.nl         */
+/*   Created: 2021/10/26 17:17:23 by fholwerd      #+#    #+#                 */
+/*   Updated: 2021/10/26 17:17:27 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_H
-# define HEADER_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -27,7 +27,7 @@ typedef struct s_tags
 	int		flag_minus;
 	int		flag_plus;
 	int		flag_zero;
-	int		flag_blank;
+	int		flag_space;
 	int		flag_hash;
 	int		width;
 	int		precision;
@@ -53,7 +53,7 @@ int		print_blank(int length, t_tags *tags);
 int		ft_isdigit(int c);
 void	ft_putint(int n, t_tags *tags);
 void	ft_putuint(u_int32_t n, t_tags *tags);
-void	ft_puthex(u_int32_t n, t_tags *tags, int big);
+void	ft_puthex(u_int32_t n, t_tags *tags, int big, int first);
 void	ft_putpointer(u_int64_t n, t_tags *tags);
 
 void	ft_lstnew(t_tags *tags);

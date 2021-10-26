@@ -6,11 +6,11 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/15 16:35:02 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/30 14:34:02 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/10/26 17:16:38 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header.h"
+#include "../ft_printf.h"
 
 void	parse_size(const char *str, t_tags *tags)
 {

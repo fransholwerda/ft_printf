@@ -6,16 +6,40 @@
 #    By: fholwerd <fholwerd@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/04/15 16:51:44 by fholwerd      #+#    #+#                  #
-#    Updated: 2021/05/13 15:53:10 by fholwerd      ########   odam.nl          #
+#    Updated: 2021/10/26 19:34:05 by fholwerd      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-SRCS = $(filter-out main.c, $(wildcard *.c)) $(wildcard parsing/*.c) $(wildcard utility/*.c) conversion/convert_c.c conversion/convert_s.c conversion/convert_percent.c conversion/convert_d.c conversion/convert_u.c conversion/convert_x.c conversion/convert_p.c
-SRCS_BONUS = $(wildcard bonus/*.c)
+SRC_CONVERSION = conversion/convert_c.c \
+	conversion/convert_d.c \
+	conversion/convert_p.c \
+	conversion/convert_percent.c \
+	conversion/convert_s.c \
+	conversion/convert_u.c \
+	conversion/convert_x.c
+SRC_PARSING = parsing/parse_conversion.c \
+	parsing/parse_flags.c \
+	parsing/parse_precision.c \
+	parsing/parse_size.c \
+	parsing/parse_width.c \
+	parsing/parse.c
+SRC_UTILITY = utility/count_digits.c \
+	utility/count_skip.c \
+	utility/ft_atoi.c \
+	utility/ft_isdigit.c \
+	utility/ft_putchar.c \
+	utility/ft_putnbr.c \
+	utility/ft_putstr.c \
+	utility/ft_strchr.c \
+	utility/ft_strlen.c \
+	utility/print_blank.c \
+	utility/struct_utility.c
+SRCS = ft_printf.c $(SRC_CONVERSION) $(SRC_PARSING) $(SRC_UTILITY)
+SRCS_BONUS = 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
-HEADERS = header.h
+HEADERS = ft_printf.h
 CFLAGS = -Wall -Wextra -Werror
 
 ifdef WITH_BONUS

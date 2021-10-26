@@ -6,17 +6,17 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/01 16:13:07 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/18 13:13:17 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/10/26 17:16:38 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../ft_printf.h"
 
 void	ft_lstnew(t_tags *tags)
 {
 	tags->printed = 0;
 	tags->pos = 0;
-	tags->flag_blank = 0;
+	tags->flag_space = 0;
 	tags->flag_hash = 0;
 	tags->flag_minus = 0;
 	tags->flag_plus = 0;
@@ -30,7 +30,7 @@ void	ft_lstnew(t_tags *tags)
 
 void	ft_lstreset(t_tags *tags)
 {
-	tags->flag_blank = 0;
+	tags->flag_space = 0;
 	tags->flag_hash = 0;
 	tags->flag_minus = 0;
 	tags->flag_plus = 0;

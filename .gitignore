@@ -2,4 +2,4 @@
 *.out
 *.o
 main.c
-!.gitignore
+.gitignore

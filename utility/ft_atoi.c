@@ -6,11 +6,9 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/22 13:51:47 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/04/22 13:52:10 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/10/26 19:34:30 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../header.h"
 
 static int	overflow_check(long int value, int minus, const char c)
 {

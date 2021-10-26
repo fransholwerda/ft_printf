@@ -6,15 +6,15 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/12 12:57:18 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/13 15:48:55 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/10/26 17:16:38 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header.h"
+#include "../ft_printf.h"
 
 int	int_digits(int n)
 {
-	int digits;
+	int	digits;
 
 	digits = 1;
 	if (n < 0)
@@ -29,7 +29,7 @@ int	int_digits(int n)
 
 int	uint_digits(u_int32_t n)
 {
-	int digits;
+	int	digits;
 
 	digits = 1;
 	while (n >= 10)
@@ -42,7 +42,7 @@ int	uint_digits(u_int32_t n)
 
 int	hex_digits(u_int32_t n)
 {
-	int digits;
+	int	digits;
 
 	digits = 1;
 	while (n >= 16)
@@ -55,7 +55,7 @@ int	hex_digits(u_int32_t n)
 
 int	pointer_digits(u_int64_t n)
 {
-	int digits;
+	int	digits;
 
 	digits = 1;
 	while (n >= 16)

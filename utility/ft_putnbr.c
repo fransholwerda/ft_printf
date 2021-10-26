@@ -6,11 +6,11 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/11 15:54:35 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/05/13 15:52:35 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/10/26 17:16:38 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header.h"
+#include "../ft_printf.h"
 
 void	ft_putint(int n, t_tags *tags)
 {
@@ -43,17 +43,22 @@ void	ft_putuint(u_int32_t n, t_tags *tags)
 	}
 }
 
-void	ft_puthex(u_int32_t n, t_tags *tags, int big)
+void	ft_puthex(u_int32_t n, t_tags *tags, int big, int first)
 {
 	char	*small_hex;
 	char	*big_hex;
 
 	small_hex = "0123456789abcdef";
 	big_hex = "0123456789ABCDEF";
+	if (tags->flag_hash && n != 0 && !big && first)
+		tags->printed += ft_putstr("0x", tags);
+	else if (tags->flag_hash && n != 0 && big && first)
+		tags->printed += ft_putstr("0X", tags);
+	first = 0;
 	if (!(tags->precision_true && !tags->precision && !n))
 	{
 		if (n >= 16)
-			ft_puthex(n / 16, tags, big);
+			ft_puthex(n / 16, tags, big, 0);
 		if (big)
 			tags->printed += ft_putchar(big_hex[n % 16]);
 		else
