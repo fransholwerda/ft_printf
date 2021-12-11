@@ -6,18 +6,16 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/26 17:17:23 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/10/26 17:17:27 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/10/29 21:05:18 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include <string.h> //REMOVE THIS LATER
 
 typedef struct s_tags
 {

@@ -6,9 +6,11 @@
 /*   By: fholwerd <fholwerd@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/29 13:28:07 by fholwerd      #+#    #+#                 */
-/*   Updated: 2021/10/26 19:34:42 by fholwerd      ########   odam.nl         */
+/*   Updated: 2021/10/29 21:03:54 by fholwerd      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../ft_printf.h"
 
 int	ft_putchar(char c)
 {

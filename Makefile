@@ -6,7 +6,7 @@
 #    By: fholwerd <fholwerd@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/04/15 16:51:44 by fholwerd      #+#    #+#                  #
-#    Updated: 2021/10/26 19:34:05 by fholwerd      ########   odam.nl          #
+#    Updated: 2021/10/29 21:07:45 by fholwerd      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ SRC_UTILITY = utility/count_digits.c \
 	utility/print_blank.c \
 	utility/struct_utility.c
 SRCS = ft_printf.c $(SRC_CONVERSION) $(SRC_PARSING) $(SRC_UTILITY)
-SRCS_BONUS = 
+SRCS_BONUS =
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 HEADERS = ft_printf.h
