@@ -1,5 +1,0 @@
-.*
-*.out
-*.o
-main.c
-.gitignore
